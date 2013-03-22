@@ -11,7 +11,7 @@ import sun.audio.*;
  * 		tempo.
  * @seeAlso funções - Tenho que fazer o pausar, voltar e a música continuar tocando se não ocorrer stop
  * @takeCare_Attention AudioDevice - Ele tem que estar no package 'sun.audio' determinado por mim. */
-public class Player {
+public class Player extends Thread {
 	String name;
 	AudioStream som;
 	File arquivo;
@@ -26,18 +26,24 @@ public class Player {
 		this.arqStream = null;
 		this.audio = null;
 	}
-
-	public void tocar () throws Exception
+	
+	public void run ()
 	{
 		try {
 			this.arquivo = new File (this.name);		// definindo o caminho do arquivo
 			this.arqStream = new FileInputStream(arquivo);
-
-			this.audio = new AudioPlayer();
 			this.som = new AudioStream (arqStream);
+			this.audio = new AudioPlayer();
+			
+			//this.audio.run();
+			
+		} catch (Exception e){}
+	}
 
+	public void tocar () throws Exception
+	{
+		try {
 			this.audio.player.start(this.som);
-
 		} catch (Exception e) {
 			System.err.printf(e.getMessage(), '\n');
 		}
@@ -55,16 +61,17 @@ public class Player {
 	public void pausar () throws Exception
 	{
 		try {
-			this.audio.player.wait();
+			this.audio.wait();
 		} catch (Exception e) {
-			System.err.printf(e.getMessage(), '\n');
+			//System.err.printf(e.getMessage(), '\n');
+			e.printStackTrace();
 		}
 	}
 
 	public void voltar () throws Exception
 	{
 		try {
-			this.audio.player.notify();
+			this.audio.notify();
 		} catch (Exception e) {
 			System.err.printf(e.getMessage(), '\n');
 		}
@@ -74,14 +81,15 @@ public class Player {
 	{
 		return this.audio.interrupted();
 	}
-
+	public synchronized void m() {}
 	public static void main(String[] args) throws Exception {
-		Player t = new Player("c:/b.mp3");
-
+		Player t = new Player("c:/a.mp3");
+		t.run();
+		t.m();
+		t.tocar();
+		
 		while (true)
 		{
-			t.tocar();
-
 			String doUser = new Scanner (System.in).next();
 
 			/** Tenho que fazer ele parar e os subsequentes métodos assim que receber um comando da GUI */
@@ -93,7 +101,9 @@ public class Player {
 				t.pausar();
 			else if (doUser.equalsIgnoreCase("voltar"))
 				t.voltar();
-
+			else if (doUser.equalsIgnoreCase("tocar")) {
+				t.tocar();
+			}
 		}
 
 	}
