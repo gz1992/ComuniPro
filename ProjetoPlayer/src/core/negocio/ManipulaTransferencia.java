@@ -1,84 +1,56 @@
 package core.negocio;
 
-import core.dados.Download;
+import core.dados.Clientes;
 import core.fachada.InterfaceManipulaTrans;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
+/**@author Angelo
+ * TODO vai tratar de cuidar os casos do clientes, ou seja, para o possível caso de vários clientes */
 public class ManipulaTransferencia implements InterfaceManipulaTrans {
-	ArrayList<Download> lista;
+	Vector <Clientes> cliente;
 
 	public ManipulaTransferencia() {
-		this.lista = new ArrayList<Download>();
+		this.cliente = new Vector <Clientes>();
 	}
 	
-	public ArrayList<Download> getLista() {
-		return lista;
+	public Vector<Clientes> getCliente() {
+		return cliente;
 	}
 
-	public void setLista(ArrayList<Download> lista) {
-		this.lista = lista;
+	public void setCliente(Vector<Clientes> cliente) {
+		this.cliente = cliente;
 	}
 	
-	private Download enviaDownload ()
+	public void inserirCliente ()
+	{
+		
+	}
+	
+	public void removerCliente ()
+	{
+		
+	}
+	
+	public void removerClientePorIndice ()
+	{
+		
+	}
+	
+	public void inserirClientePorIndice ()
+	{
+		
+	}
+	
+	public Object identificaCliente(Object obj)
 	{
 		return null;
 	}
 	
-	/**
-	 * TODO ver como vai ser feita essa atualização.
-	 * @return Os bytes que foram pegos no anterior segundo da transferência.
-	 */
-	public Download atualiza (Object bytes)
+	/** TODO ver como vou mandar a lista de downloads para a GUI */
+	public void atualizaListaDeDownloads()
 	{
-		double start = System.currentTimeMillis(), delay;
 		
-		delay = System.currentTimeMillis() - start;
-		while (delay < 1000)			// ou seja, menor que um segundo
-		{
-			delay = System.currentTimeMillis() - start;
-			
-			if (delay>=1000)
-			{
-				// manda os dados para a GUI
-				
-				this.enviaDownload();
-			}
-		}
-		
-		return null;
 	}
 	
-	/**
-	 * @param download O download que está sendo criado no momento.
-	 */
-	public void inserirDownload (Download download)
-	{
-		this.lista.add(download);
-	}
-	
-	/**
-	 * @param download O objeto a ser removido da lista.
-	 */
-	public void removerDownload (Download download)
-	{
-		this.lista.remove(lista);
-	}
-	
-	/**
-	 * @param indice O indice identificador do objeto.
-	 */
-	public void removerDownloadPorIndice (int indice)
-	{
-		this.lista.remove(indice);
-	}
-	
-	/**
-	 * @param indice	A posição em que o elemento vai ser inserido.
-	 * @param download	O objeto a ser inserido.
-	 */
-	public void inserirDownloadEmIndice (int indice, Download download)
-	{
-		this.lista.add(indice, download);
-	}
 }

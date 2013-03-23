@@ -1,7 +1,5 @@
 package core.fachada;
 
-import core.dados.Download;
-
 public interface InterfaceCliente {
 
 	String getIP();
@@ -10,6 +8,5 @@ public interface InterfaceCliente {
 	void setNome(String nome);
 	int getPorta();
 	void setPorta(int porta);
-	Download getDown();
-	void setDown(Download down);
+	
 }

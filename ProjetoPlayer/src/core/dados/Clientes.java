@@ -1,17 +1,19 @@
 package core.dados;
 
+import java.util.Vector;
+
 import core.fachada.InterfaceCliente;
 
 public class Clientes implements InterfaceCliente {
 	String IP, nome;
 	int porta;
-	Download down;
+	Vector <Download> lista;
 
 	public Clientes() {
 		this.IP = "";
 		this.nome = "";
 		this.porta = 0;
-		this.down = null;
+		this.lista = null;
 	}
 
 	public String getIP() {
@@ -37,13 +39,48 @@ public class Clientes implements InterfaceCliente {
 	public void setPorta(int porta) {
 		this.porta = porta;
 	}
-
-	public Download getDown() {
-		return down;
+	
+	public Vector<Download> getLista() {
+		return lista;
 	}
 
-	public void setDown(Download down) {
-		this.down = down;
+	public void setLista(Vector<Download> lista) {
+		this.lista = lista;
+	}
+	
+	/** Exibir as informações para a GUI */
+	
+	/**
+	 * @param download O download que está sendo criado no momento.
+	 */
+	public void inserirDownload (Download download)
+	{
+		this.lista.add(download);
+	}
+	
+	/**
+	 * @param download O objeto a ser removido da lista.
+	 */
+	public void removerDownload (Download download)
+	{
+		this.lista.remove(lista);
+	}
+	
+	/**
+	 * @param indice O indice identificador do objeto.
+	 */
+	public void removerDownloadPorIndice (int indice)
+	{
+		this.lista.remove(indice);
+	}
+	
+	/**
+	 * @param indice	A posição em que o elemento vai ser inserido.
+	 * @param download	O objeto a ser inserido.
+	 */
+	public void inserirDownloadEmIndice (int indice, Download download)
+	{
+		this.lista.add(indice, download);
 	}
 	
 }

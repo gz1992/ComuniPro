@@ -41,6 +41,7 @@ public class Connection {
 		short checksum = TSocket.check(buf, buf.length);
 		return (checksum>>8 != buf[2]) && (((byte)checksum) != buf[3]);
 	}
+	
 	public void send(DatagramPacket dp) throws Exception {
 		ds.send(dp);
 		System.out.print("Enviado "+((char)dp.getData()[0])+"\n");

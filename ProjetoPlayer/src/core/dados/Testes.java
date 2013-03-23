@@ -1,6 +1,7 @@
 package core.dados;
 
 import java.util.Hashtable;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
 
@@ -10,12 +11,7 @@ public class Testes {
 
 	/**@remember Fazer métodos para atualizar as informações de downloads a cada segundo */
 	public static void main(String[] args) {
-		Hashtable <String, Double> tabela = new Hashtable<String, Double>(5);
-		Hashtable <String, Double> abc = new Hashtable<String, Double>();
-		
-		ConcurrentHashMap <String, Integer> show = new ConcurrentHashMap<String, Integer>();
-		
-		ArrayList<Download> listaDownloads = new ArrayList<Download>();
+		Vector<Download> vectorDown = new Vector <Download>();
 		
 		ManipulaTransferencia test = new ManipulaTransferencia();
 
@@ -27,13 +23,14 @@ public class Testes {
 		
 		for (int i=0; i<10; i++)
 		{
-			aux.setIP("192.354.");
+			aux.setIP("192.354.62");
 			
-			if (i*2 > 5)
+			if (i*2 > pos)
 				aux.setMusica("Eramos dois");
 			
 			aux.setTempoEstimado(2.3);
 			
+			vectorDown.add(aux);
 			test.inserirDownload(aux);
 			
 			aux.setAtivo(true);

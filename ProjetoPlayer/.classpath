@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="C:/Users/ivonei/ComuniPro/Bibliotecas/jl1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ivonei/ComuniPro/Bibliotecas/mp3spi1.9.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ivonei/ComuniPro/Bibliotecas/tritonus_share.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ivonei/ComuniPro/Bibliotecas/basicplayer3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ivonei/ComuniPro/Bibliotecas/commons-logging-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
