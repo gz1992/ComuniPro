@@ -5,13 +5,15 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import core.fachada.InterfacePlayer;
+
 import sun.audio.*;
 
 /** @seeAlso paralelismo - Falta ainda tratar possíveis tentativas de colocar duas músicas para rodar ao mesmo
  * 		tempo.
  * @seeAlso funções - Tenho que fazer o pausar, voltar e a música continuar tocando se não ocorrer stop
  * @takeCare_Attention AudioDevice - Ele tem que estar no package 'sun.audio' determinado por mim. */
-public class Player extends Thread {
+public class Player extends Thread implements InterfacePlayer {
 	String name;
 	AudioStream som;
 	File arquivo;
@@ -68,7 +70,7 @@ public class Player extends Thread {
 		}
 	}
 
-	public void voltar () throws Exception
+	public void continuar () throws Exception
 	{
 		try {
 			this.audio.notify();
@@ -81,9 +83,11 @@ public class Player extends Thread {
 	{
 		return this.audio.interrupted();
 	}
+	
 	public synchronized void m() {}
+	
 	public static void main(String[] args) throws Exception {
-		Player t = new Player("c:/a.mp3");
+		Player t = new Player("c:/t.wav");
 		t.run();
 		t.m();
 		t.tocar();
@@ -100,7 +104,7 @@ public class Player extends Thread {
 			} else if (doUser.equalsIgnoreCase("pausar"))
 				t.pausar();
 			else if (doUser.equalsIgnoreCase("voltar"))
-				t.voltar();
+				t.continuar();
 			else if (doUser.equalsIgnoreCase("tocar")) {
 				t.tocar();
 			}
